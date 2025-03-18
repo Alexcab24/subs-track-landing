@@ -5,7 +5,8 @@ import Hero from "../components/Hero.astro";
 import Features from "../components/Features.astro";
 import Footer from "../components/Footer.astro";
 import FeatureShowcase from "../components/FeatureShowcase.astro";
-import Waitlist from "../components/Waitlist.astro";
+import FAQ from "../components/FAQ.astro";
+import Background from "../components/Background.astro";
 
 const features = [
 	{
@@ -34,12 +35,15 @@ const features = [
 ---
 
 <Layout title="Sublyt - Smart Subscription Management">
-	<Header />
-	<main>
-		<Hero />
-		<FeatureShowcase features={features} />
-		<Features />
-		<Waitlist />
-	</main>
-	<Footer />
+	<div class="relative">
+		<Background />
+		<Header />
+		<main>
+			<Hero />
+			<FeatureShowcase features={features} />
+			<Features />
+			<FAQ />
+		</main>
+		<Footer />
+	</div>
 </Layout>

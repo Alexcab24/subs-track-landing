@@ -1,0 +1,127 @@
+---
+const faqs = [
+    {
+        question: "How does Sublyt work?",
+        answer: "Sublyt connects to your bank accounts and automatically tracks all your subscription payments. We organize them in a clean dashboard, send you payment reminders, and help you optimize your spending.",
+    },
+    {
+        question: "Is my financial data secure?",
+        answer: "Yes, absolutely. We use bank-level encryption and security measures to protect your data. We never store your bank credentials and only read transaction data with your explicit permission.",
+    },
+    {
+        question: "Which banks do you support?",
+        answer: "We support major banks worldwide through secure connections. Our system is constantly expanding to support more financial institutions.",
+    },
+    {
+        question: "Can I manually add subscriptions?",
+        answer: "Yes! While we automatically detect most subscriptions, you can manually add any subscription that we might miss. This gives you complete control over your subscription tracking.",
+    },
+    {
+        question: "What happens if I cancel a subscription?",
+        answer: "When you cancel a subscription, we'll mark it as cancelled and stop tracking it. You can still view its history in your payment records.",
+    },
+    {
+        question: "Do you offer a free trial?",
+        answer: "Yes! We offer a 14-day free trial of our premium features. You can start with our basic features at no cost and upgrade when you're ready.",
+    },
+];
+---
+
+<section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center">
+            <h2 class="text-3xl font-bold text-gray-900 sm:text-4xl">
+                Frequently Asked Questions
+            </h2>
+            <p class="mt-4 text-lg text-gray-600">
+                Everything you need to know about Sublyt
+            </p>
+        </div>
+
+        <div class="mt-12 max-w-3xl mx-auto">
+            <div class="space-y-4">
+                {
+                    faqs.map((faq, index) => (
+                        <div class="border border-gray-200 rounded-lg">
+                            <button
+                                class="w-full px-6 py-4 text-left focus:outline-none focus:ring-2 focus:ring-[#192a56] focus:ring-offset-2 rounded-lg"
+                                aria-expanded="false"
+                                aria-controls={`faq-${index}`}
+                            >
+                                <div class="flex items-center justify-between">
+                                    <h3 class="text-lg font-medium text-gray-900">
+                                        {faq.question}
+                                    </h3>
+                                    <svg
+                                        class="w-5 h-5 text-gray-500 transform transition-transform duration-200"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M19 9l-7 7-7-7"
+                                        />
+                                    </svg>
+                                </div>
+                            </button>
+                            <div
+                                id={`faq-${index}`}
+                                class="overflow-hidden transition-all duration-300 ease-in-out"
+                                style="max-height: 0"
+                            >
+                                <div class="px-6 pb-4">
+                                    <p class="text-base text-gray-600">
+                                        {faq.answer}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+
+        <div class="mt-12 text-center">
+            <p class="text-base text-gray-600">
+                Still have questions?{" "}
+                <a
+                    href="#"
+                    class="font-medium text-[#192a56] hover:text-[#FFD700]"
+                >
+                    Contact our support team
+                </a>
+            </p>
+        </div>
+    </div>
+</section>
+
+<script>
+    // Add click handlers for accordion functionality
+    document.querySelectorAll("button[aria-expanded]").forEach((button) => {
+        button.addEventListener("click", () => {
+            const expanded = button.getAttribute("aria-expanded") === "true";
+            const content = document.getElementById(
+                button.getAttribute("aria-controls") || "",
+            );
+            const icon = button.querySelector("svg");
+
+            if (content && icon) {
+                // Toggle content height
+                if (!expanded) {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                } else {
+                    content.style.maxHeight = "0";
+                }
+
+                // Toggle icon rotation
+                icon.classList.toggle("rotate-180");
+
+                // Update aria-expanded
+                button.setAttribute("aria-expanded", String(!expanded));
+            }
+        });
+    });
+</script>

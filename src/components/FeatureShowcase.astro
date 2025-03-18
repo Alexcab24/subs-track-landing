@@ -36,13 +36,13 @@ const { features } = Astro.props;
                         {feature.deviceType === "laptop" ? (
                             <div class="relative">
                                 <div class="absolute inset-0 rounded-xl transform rotate-1" />
-                                <div class="relative bg-white rounded-lg shadow-xl overflow-hidden">
+                                <div class="relative bg-white rounded-lg shadow-xl overflow-hidden hover:shadow-2xl hover:shadow-[#E6C84F] transition-shadow duration-700">
                                     <div class="h-2 " />
-                                    <a href="/app" class="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-black transition-all duration-500 w-full">
+                                    <a href="/app" class="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-black transition-all duration-500 w-full ">
                                         <img
                                         src={feature.image}
                                         alt={feature.imageAlt}
-                                        class="object-cover object-center w-full h-full transition-transform duration-1000 ease-in-out transform group-hover:scale-110 "
+                                        class="object-cover object-center w-full h-full transition-transform duration-1000 ease-in-out transform group-hover:scale-110  "
                                     />
                                     </a>
                                   
@@ -51,7 +51,7 @@ const { features } = Astro.props;
                         ) : (
                         <div class="relative">
                                 <div class="absolute inset-0 rounded-xl transform rotate-1" />
-                                <div class="relative bg-white rounded-lg shadow-xl overflow-hidden">
+                                <div class="relative bg-white rounded-lg shadow-xl overflow-hidden hover:shadow-2xl hover:shadow-[#E6C84F] transition-shadow duration-700">
                                     <div class="h-2 " />
                                     <a href="/app/history" class="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-black transition-all duration-500 w-full">
                                         <img

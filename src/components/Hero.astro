@@ -1,43 +1,87 @@
-<section class="relative pt-32 pb-24 overflow-hidden">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+---
+
+---
+
+<section class="relative overflow-hidden">
+    {/* Content */}
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-32">
         <div class="text-center">
             <h1
-                class="text-4xl sm:text-5xl lg:text-6xl font-bold text-[#192a56] tracking-tight"
+                class="text-4xl sm:text-5xl md:text-6xl font-bold text-[#192a56] tracking-tight"
             >
-                Manage Your Subscriptions<br />
-                <span
-                    class="bg-gradient-to-r from-[#FFEA70] to-[#E5C438] bg-clip-text text-transparent"
-                    >the Smart Way</span
-                >
+                Manage Your Subscriptions
+                <span class="block text-[#FFD700]">With Ease</span>
             </h1>
             <p class="mt-6 text-xl text-gray-600 max-w-3xl mx-auto">
-                Stop losing money on forgotten subscriptions. SubsTrack helps
-                you take full control of your digital services with smart
-                reminders and expense analytics, all in one place.
+                Track all your subscriptions in one place. Never miss a payment
+                or renewal date again.
             </p>
-            <div class="mt-10 flex justify-center gap-4">
-                <a
-                    href="#waitlist"
-                    class="inline-flex items-center px-6 py-3 border border-transparent text-base font-bold rounded-lg text-[#192a56] bg-[#FFD700] hover:bg-[#E6C84F] transition-colors"
-                >
-                Join
-                </a>
-                <a
-                    href="#features"
-                    class="inline-flex items-center px-6 py-3 border border-gray-300 text-base font-medium rounded-lg text-gray-700 bg-white hover:bg-gray-50 transition-colors"
-                >
-                    Learn More
-                </a>
-            </div>
         </div>
 
-        <!-- Decorative blob -->
-        <div
-            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10"
-        >
+        {/* Waitlist Form */}
+        <div class="mt-12 max-w-md mx-auto">
+            <form class="sm:flex sm:gap-x-4">
+                <div class="flex-1">
+                    <label for="email-address" class="sr-only">
+                        Email address
+                    </label>
+                    <input
+                        id="email-address"
+                        name="email-address"
+                        type="email"
+                        autocomplete="email"
+                        required
+                        class="w-full rounded-lg border border-gray-200 px-4 py-3 text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#FFD700] focus:border-transparent"
+                        placeholder="Enter your email"
+                    />
+                </div>
+                <div class="mt-3 sm:mt-0">
+                    <button
+                        type="submit"
+                        class="w-full flex justify-center items-center px-6 py-3 border border-transparent text-base font-medium rounded-lg text-[#192a56] bg-[#FFD700] hover:bg-[#E6C84F] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#FFD700] transition-colors"
+                    >
+                        Join Waitlist
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        {/* Feature highlights */}
+        <div class="mt-16 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
             <div
-                class="w-[800px] h-[800px] bg-gradient-to-r from-blue-50 to-indigo-50 rounded-full blur-3xl opacity-50"
+                class="relative p-6 bg-white rounded-lg border border-gray-100 shadow-sm hover:shadow-md transition-shadow"
             >
+                <div class="text-[#FFD700] text-2xl mb-4">📊</div>
+                <h3 class="text-lg font-medium text-[#192a56]">
+                    Smart Analytics
+                </h3>
+                <p class="mt-2 text-gray-600">
+                    Get insights into your spending patterns and subscription
+                    usage
+                </p>
+            </div>
+            <div
+                class="relative p-6 bg-white rounded-lg border border-gray-100 shadow-sm hover:shadow-md transition-shadow"
+            >
+                <div class="text-[#FFD700] text-2xl mb-4">🔔</div>
+                <h3 class="text-lg font-medium text-[#192a56]">
+                    Payment Reminders
+                </h3>
+                <p class="mt-2 text-gray-600">
+                    Never miss a payment with smart notifications and reminders
+                </p>
+            </div>
+            <div
+                class="relative p-6 bg-white rounded-lg border border-gray-100 shadow-sm hover:shadow-md transition-shadow"
+            >
+                <div class="text-[#FFD700] text-2xl mb-4">💳</div>
+                <h3 class="text-lg font-medium text-[#192a56]">
+                    Bank Integration
+                </h3>
+                <p class="mt-2 text-gray-600">
+                    Connect your bank accounts for automatic subscription
+                    tracking
+                </p>
             </div>
         </div>
     </div>
