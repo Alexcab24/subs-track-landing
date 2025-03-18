@@ -1,0 +1,71 @@
+---
+interface Feature {
+    title: string;
+    description: string;
+    image: string;
+    imageAlt: string;
+    deviceType: "laptop" | "mobile";
+    reverse?: boolean;
+}
+
+interface Props {
+    features: Feature[];
+}
+
+const { features } = Astro.props;
+---
+
+<section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {
+            features.map((feature, index) => (
+                <div
+                    class={`flex flex-col ${
+                        feature.reverse ? "lg:flex-row-reverse" : "lg:flex-row"
+                    } items-center gap-8 lg:gap-16 mb-16 last:mb-0`}
+                >
+                    <div class="w-full lg:w-1/2">
+                        <h2 class="text-3xl font-bold text-gray-900 mb-4">
+                            {feature.title}
+                        </h2>
+                        <p class="text-lg text-gray-600">
+                            {feature.description}
+                        </p>
+                    </div>
+                    <div class="w-full lg:w-1/2">
+                        {feature.deviceType === "laptop" ? (
+                            <div class="relative">
+                                <div class="absolute inset-0 rounded-xl transform rotate-1" />
+                                <div class="relative bg-white rounded-lg shadow-xl overflow-hidden">
+                                    <div class="h-2 " />
+                                    <a href="/app" class="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-black transition-all duration-500 w-full">
+                                        <img
+                                        src={feature.image}
+                                        alt={feature.imageAlt}
+                                        class="object-cover object-center w-full h-full transition-transform duration-1000 ease-in-out transform group-hover:scale-110 "
+                                    />
+                                    </a>
+                                  
+                                </div>
+                            </div>
+                        ) : (
+                        <div class="relative">
+                                <div class="absolute inset-0 rounded-xl transform rotate-1" />
+                                <div class="relative bg-white rounded-lg shadow-xl overflow-hidden">
+                                    <div class="h-2 " />
+                                    <a href="/app/history" class="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-black transition-all duration-500 w-full">
+                                        <img
+                                        src={feature.image}
+                                        alt={feature.imageAlt}
+                                        class="object-cover object-center w-full h-full transition-transform duration-1000 ease-in-out transform group-hover:scale-110 "
+                                    />
+                                    </a>
+                                </div>
+                            </div>
+                        )}
+                    </div>
+                </div>
+            ))
+        }
+    </div>
+</section>

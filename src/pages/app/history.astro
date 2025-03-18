@@ -1,0 +1,156 @@
+---
+import DashboardLayout from "../../layouts/DashboardLayout.astro";
+
+interface Transaction {
+    id: string;
+    service: string;
+    amount: number;
+    date: string;
+    status: "successful" | "pending" | "failed";
+}
+
+// Example data
+const transactions: Transaction[] = [
+    {
+        id: "TX-001",
+        service: "Netflix",
+        amount: 15.99,
+        date: "2024-03-15",
+        status: "successful",
+    },
+    {
+        id: "TX-002",
+        service: "Spotify",
+        amount: 9.99,
+        date: "2024-03-10",
+        status: "successful",
+    },
+];
+
+const getStatusColor = (status: Transaction["status"]) => {
+    const colors = {
+        successful: "bg-green-100 text-green-800",
+        pending: "bg-yellow-100 text-yellow-800",
+        failed: "bg-red-100 text-red-800",
+    } as const;
+    return colors[status];
+};
+---
+
+<DashboardLayout title="Payment History - SubsTrack">
+    <div class="space-y-6">
+        <div class="flex items-center justify-between">
+            <div>
+                <h1 class="text-2xl font-semibold text-gray-900">
+                    Payment History
+                </h1>
+                <p class="mt-1 text-sm text-gray-500">
+                    Review all your transactions and payments
+                </p>
+            </div>
+        </div>
+
+        {/* Filters */}
+        <div
+            class="bg-white p-4 rounded-lg shadow space-y-4 sm:flex sm:space-y-0 sm:space-x-4"
+        >
+            <div class="relative">
+                <input
+                    type="text"
+                    placeholder="Search service..."
+                    class="w-full sm:w-64 rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                />
+            </div>
+            <div class="flex space-x-4">
+                <select
+                    class="rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                >
+                    <option>All statuses</option>
+                    <option>Successful</option>
+                    <option>Pending</option>
+                    <option>Failed</option>
+                </select>
+                <select
+                    class="rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                >
+                    <option>Last month</option>
+                    <option>Last 3 months</option>
+                    <option>Last year</option>
+                </select>
+            </div>
+        </div>
+
+        {/* Transactions table */}
+        <div class="bg-white rounded-lg shadow overflow-hidden">
+            <div class="min-w-full divide-y divide-gray-200">
+                <div class="bg-gray-50">
+                    <div
+                        class="grid grid-cols-5 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    >
+                        <div>ID</div>
+                        <div>Service</div>
+                        <div>Date</div>
+                        <div>Amount</div>
+                        <div>Status</div>
+                    </div>
+                </div>
+
+                <div class="bg-white divide-y divide-gray-200">
+                    {/* Real transactions */}
+                    {
+                        transactions.map((tx: Transaction) => (
+                            <div class="grid grid-cols-5 px-6 py-4 text-sm text-gray-900">
+                                <div class="font-mono text-gray-600">
+                                    {tx.id}
+                                </div>
+                                <div>{tx.service}</div>
+                                <div>
+                                    {new Date(tx.date).toLocaleDateString()}
+                                </div>
+                                <div>${tx.amount}</div>
+                                <div>
+                                    <span
+                                        class={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getStatusColor(tx.status)}`}
+                                    >
+                                        {tx.status === "successful"
+                                            ? "Successful"
+                                            : tx.status === "pending"
+                                              ? "Pending"
+                                              : "Failed"}
+                                    </span>
+                                </div>
+                            </div>
+                        ))
+                    }
+
+                    {/* Skeleton loaders */}
+                    {
+                        [1, 2, 3].map((_, i) => (
+                            <div class="grid grid-cols-5 px-6 py-4">
+                                <div class="h-4 w-16 bg-gray-200 rounded animate-pulse" />
+                                <div class="h-4 w-24 bg-gray-200 rounded animate-pulse" />
+                                <div class="h-4 w-20 bg-gray-200 rounded animate-pulse" />
+                                <div class="h-4 w-16 bg-gray-200 rounded animate-pulse" />
+                                <div class="h-4 w-20 bg-gray-200 rounded animate-pulse" />
+                            </div>
+                        ))
+                    }
+                </div>
+            </div>
+        </div>
+
+        {/* Pagination - Work in Progress */}
+        <div class="flex items-center justify-between">
+            <div class="flex-1 flex justify-between sm:hidden">
+                <div class="h-8 w-24 bg-gray-200 rounded animate-pulse"></div>
+                <div class="h-8 w-24 bg-gray-200 rounded animate-pulse"></div>
+            </div>
+            <div
+                class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between"
+            >
+                <div class="h-5 w-32 bg-gray-200 rounded animate-pulse"></div>
+                <div class="h-8 w-64 bg-gray-200 rounded animate-pulse"></div>
+            </div>
+        </div>
+    </div>
+</DashboardLayout>

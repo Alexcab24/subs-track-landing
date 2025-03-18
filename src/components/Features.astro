@@ -1,0 +1,73 @@
+---
+const features = [
+    {
+        name: "Smart Reminders",
+        description:
+            "Never miss a payment again. Get timely notifications before your subscriptions renew.",
+        icon: "🔔",
+    },
+    {
+        name: "Expense Analytics",
+        description:
+            "Track your spending patterns and identify opportunities to save with detailed analytics.",
+        icon: "📊",
+    },
+    {
+        name: "Subscription Management",
+        description:
+            "Manage all your digital services in one place. Add, cancel, or modify subscriptions easily.",
+        icon: "✨",
+    },
+    {
+        name: "Budget Planning",
+        description:
+            "Set spending limits and get alerts when you're approaching your budget threshold.",
+        icon: "💰",
+    },
+    {
+        name: "Minimalist and fast interface",
+        description:
+            "Clean, distraction-free design for easy subscription management.",
+        icon: "⚖️",
+    },
+    {
+        name: "Secure Platform",
+        description:
+            "Your data is protected with enterprise-grade security. We never store payment information.",
+        icon: "🔒",
+    },
+];
+---
+
+<section id="features" class="py-24 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center">
+            <h2 class="text-3xl font-bold text-gray-900 sm:text-4xl">
+                Everything You Need to Stay in Control
+            </h2>
+            <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">
+                Powerful tools to help you manage your digital subscriptions
+                efficiently and save money.
+            </p>
+        </div>
+
+        <div class="mt-20 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            {
+                features.map((feature) => (
+                    <div class="relative group">
+                        <div class="absolute -inset-1 rounded-lg bg-gradient-to-r from-blue-600 to-indigo-600 opacity-0 group-hover:opacity-100 transition-opacity blur" />
+                        <div class="relative p-6 bg-white rounded-lg">
+                            <div class="text-4xl mb-4">{feature.icon}</div>
+                            <h3 class="text-lg font-semibold text-gray-900">
+                                {feature.name}
+                            </h3>
+                            <p class="mt-2 text-gray-600">
+                                {feature.description}
+                            </p>
+                        </div>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</section>

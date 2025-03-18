@@ -1,0 +1,94 @@
+---
+const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun"];
+const values = [45, 52, 49, 60, 55, 58];
+const maxValue = Math.max(...values);
+---
+
+<div class="bg-white rounded-lg shadow">
+    <div class="p-6 border-b border-gray-200">
+        <div class="flex justify-between items-center">
+            <h2 class="text-lg font-medium text-gray-900">Monthly Expenses</h2>
+            <div class="flex items-center space-x-2">
+                <span
+                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800
+"
+                >
+                    Beta
+                </span>
+                <select class="text-sm border-gray-300 rounded-md">
+                    <option>Last 6 months</option>
+                    <option disabled>Last year</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="p-6">
+        <div class="relative h-64">
+            {/* Y axis */}
+            <div
+                class="absolute left-0 top-0 bottom-0 flex flex-col justify-between text-xs text-gray-500"
+            >
+                {
+                    Array.from({ length: 6 }, (_, i) => (
+                        <span>
+                            {Math.round(maxValue - (i * maxValue) / 5)}€
+                        </span>
+                    ))
+                }
+            </div>
+
+            {/* Chart */}
+            <div class="ml-12 h-full flex items-end justify-between">
+                {
+                    months.map((month, i) => (
+                        <div class="flex flex-col items-center space-y-2">
+                            <div
+                                class="w-12 bg-blue-500 rounded-t opacity-75 transition-all duration-300 hover:opacity-100"
+                                style={`height: ${(values[i] / maxValue) * 100}%`}
+                            >
+                                <div class="invisible group-hover:visible absolute bottom-full mb-2 text-xs font-medium">
+                                    {values[i]}€
+                                </div>
+                            </div>
+                            <span class="text-xs text-gray-500">{month}</span>
+                        </div>
+                    ))
+                }
+            </div>
+
+            {/* Construction indicator */}
+            <div
+                class="absolute inset-0 bg-white/50 flex items-center justify-center"
+            >
+                <div class="text-center">
+                    <div
+                        class="inline-flex items-center px-4 py-2 rounded-lg bg-yellow-50 text-yellow-800"
+                    >
+                        <svg
+                            class="animate-spin -ml-1 mr-3 h-5 w-5 text-yellow-800"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                        >
+                            <circle
+                                class="opacity-25"
+                                cx="12"
+                                cy="12"
+                                r="10"
+                                stroke="currentColor"
+                                stroke-width="4"></circle>
+                            <path
+                                class="opacity-75"
+                                fill="currentColor"
+                                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                            ></path>
+                        </svg>
+                        Building advanced analytics...
+                    </div>
+                    <p class="mt-2 text-sm text-gray-500">Coming soon</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,11 +1,45 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Hero from "../components/Hero.astro";
+import Features from "../components/Features.astro";
+import Footer from "../components/Footer.astro";
+import FeatureShowcase from "../components/FeatureShowcase.astro";
+import Waitlist from "../components/Waitlist.astro";
+
+const features = [
+	{
+		title: "Intuitive Dashboard",
+		description:
+			"Get a clear overview of all your subscriptions in one place. Track spending, monitor upcoming payments, and analyze your subscription patterns with our user-friendly dashboard.",
+		image: "/proto1.png",
+		imageAlt:
+			"SubsTrack Dashboard showing subscription overview and analytics",
+		deviceType: "laptop" as const,
+	},
+	{
+		title: "Detailed Payment History",
+		description:
+			"Access your complete payment history with detailed transaction records. Filter by date, status, or service to find exactly what you're looking for.",
+		image: "/proto2.png",
+		imageAlt:
+			"SubsTrack Payment History showing detailed transaction records",
+		deviceType: "mobile" as const,
+		reverse: true,
+	},
+];
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="Sublyt - Smart Subscription Management">
+	<Header />
+	<main>
+		<Hero />
+		<FeatureShowcase features={features} />
+		<Features />
+		<Waitlist />
+	</main>
+	<Footer />
 </Layout>

@@ -1,0 +1,100 @@
+---
+const plans = [
+    {
+        name: "Free",
+        price: "0",
+        description:
+            "Perfect for getting started with subscription management.",
+        features: [
+            "Up to 5 active subscriptions",
+            "Basic reminders",
+            "Monthly spending overview",
+            "Email support",
+        ],
+    },
+    {
+        name: "Pro",
+        price: "5",
+        description: "Advanced features for power users who want more control.",
+        features: [
+            "Unlimited subscriptions",
+            "Smart reminders",
+            "Advanced analytics",
+            "Priority support",
+            "Custom categories",
+            "Budget planning tools",
+        ],
+    },
+];
+---
+
+<section id="pricing" class="py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center">
+            <h2 class="text-3xl font-bold text-gray-900 sm:text-4xl">
+                Simple, Transparent Pricing
+            </h2>
+            <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">
+                Choose the plan that best fits your needs. All plans include our
+                core features to help you manage subscriptions effectively.
+            </p>
+        </div>
+
+        <div
+            class="mt-20 grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-12 max-w-4xl mx-auto"
+        >
+            {
+                plans.map((plan) => (
+                    <div class="relative">
+                        <div class="absolute -inset-1 rounded-lg bg-gradient-to-r from-blue-600 to-indigo-600 opacity-0 group-hover:opacity-100 transition-opacity blur" />
+                        <div class="relative p-8 bg-white rounded-lg shadow-sm">
+                            <h3 class="text-xl font-semibold text-gray-900">
+                                {plan.name}
+                            </h3>
+                            <p class="mt-4 text-gray-600">{plan.description}</p>
+
+                            <div class="mt-6">
+                                <span class="text-4xl font-bold text-gray-900">
+                                    ${plan.price}
+                                </span>
+                                <span class="text-gray-600">/month</span>
+                            </div>
+
+                            <ul class="mt-8 space-y-4">
+                                {plan.features.map((feature) => (
+                                    <li class="flex items-center">
+                                        <svg
+                                            class="h-5 w-5 text-blue-600"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 20 20"
+                                            fill="currentColor"
+                                        >
+                                            <path
+                                                fill-rule="evenodd"
+                                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                                clip-rule="evenodd"
+                                            />
+                                        </svg>
+                                        <span class="ml-3 text-gray-600">
+                                            {feature}
+                                        </span>
+                                    </li>
+                                ))}
+                            </ul>
+
+                            <div class="mt-8">
+                                <a
+                                    href="#waitlist"
+                                    class="block w-full px-6 py-3 text-center text-base font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700 transition-colors"
+                                >
+                                    Get Started
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</section>
+
