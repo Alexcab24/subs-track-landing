@@ -1,33 +1,33 @@
 ---
 const faqs = [
     {
-        question: "How does Sublyt work?",
-        answer: "Sublyt connects to your bank accounts and automatically tracks all your subscription payments. We organize them in a clean dashboard, send you payment reminders, and help you optimize your spending.",
+        question: "What is Sublyt and how does it help me?",
+        answer: "Sublyt is a tool that lets you organize, track, and optimize your subscriptions in one place. Forget about surprise bills: with Sublyt, you'll receive alerts before a subscription expires and can schedule payments to better manage your monthly expenses.",
     },
     {
-        question: "Is my financial data secure?",
-        answer: "Yes, absolutely. We use bank-level encryption and security measures to protect your data. We never store your bank credentials and only read transaction data with your explicit permission.",
+        question: "Why should I use Sublyt instead of a spreadsheet or notes?",
+        answer: "Unlike a spreadsheet, Sublyt sends you automatic reminders, shows you a payment history, and helps you visualize how much you actually spend on subscriptions. It's a more efficient solution and designed specifically for this purpose.",
     },
     {
-        question: "Which banks do you support?",
-        answer: "We support major banks worldwide through secure connections. Our system is constantly expanding to support more financial institutions.",
+        question: "Can I use Sublyt on my phone? Will there be an app?",
+        answer: "Yes, Sublyt works perfectly in the browser on any mobile device. In the future, we plan to release a native app to further improve the experience.",
     },
     {
-        question: "Can I manually add subscriptions?",
-        answer: "Yes! While we automatically detect most subscriptions, you can manually add any subscription that we might miss. This gives you complete control over your subscription tracking.",
+        question: "Will Sublyt help me save money?",
+        answer: "Yes. By organizing all your subscriptions and receiving alerts before they renew, you can cancel the ones you no longer use and avoid unnecessary payments.",
     },
     {
-        question: "What happens if I cancel a subscription?",
-        answer: "When you cancel a subscription, we'll mark it as cancelled and stop tracking it. You can still view its history in your payment records.",
+        question: "Does Sublyt connect to my banks or cards?",
+        answer: "Not yet. We've designed Sublyt to be simple and secure, allowing you to manually manage your payments without having to integrate bank accounts.",
     },
     {
-        question: "Do you offer a free trial?",
-        answer: "Yes! We offer a 14-day free trial of our premium features. You can start with our basic features at no cost and upgrade when you're ready.",
+        question: "Can I share my subscriptions with someone else?",
+        answer: "Sublyt is currently intended for personal use, but we're exploring options for sharing subscriptions with families or groups in future releases.",
     },
 ];
 ---
 
-<section class="py-16 bg-white">
+<section class="py-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center">
             <h2 class="text-3xl font-bold text-gray-900 sm:text-4xl">
@@ -44,7 +44,7 @@ const faqs = [
                     faqs.map((faq, index) => (
                         <div class="border border-gray-200 rounded-lg">
                             <button
-                                class="w-full px-6 py-4 text-left focus:outline-none focus:ring-2 focus:ring-[#192a56] focus:ring-offset-2 rounded-lg"
+                                class="bg-white hover:bg-gray-50 w-full px-6 py-4 text-left focus:outline-none focus:ring-offset-2 rounded-lg"
                                 aria-expanded="false"
                                 aria-controls={`faq-${index}`}
                             >
@@ -69,7 +69,7 @@ const faqs = [
                             </button>
                             <div
                                 id={`faq-${index}`}
-                                class="overflow-hidden transition-all duration-300 ease-in-out"
+                                class="overflow-hidden transition-all duration-300 ease-in-out bg-white"
                                 style="max-height: 0"
                             >
                                 <div class="px-6 pb-4">

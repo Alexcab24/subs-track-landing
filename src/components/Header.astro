@@ -1,26 +1,138 @@
-<header
-    class="fixed w-full bg-white/90 backdrop-blur-sm z-50 border-b border-gray-100"
->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-center h-16">
-            <div class="flex-shrink-0">
-                <a href="/" class="text-xl font-bold text-gray-900">
-                    <!-- SubsTrack -->
-                    <img
-                        src="/logotype.png"
-                        alt="app logotype"
-                        class="w-40 h-auto"
-                    />
-                </a>
-            </div>
-            <div class="flex items-center">
-                <a
-                    href="#waitlist"
-                    class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-bold rounded-lg text-[#192a56] bg-[#FFD700] hover:bg-[#E6C84F] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"
-                >
-                    Join the Waitlist
-                </a>
-            </div>
-        </div>
+<header class="fixed w-full z-50 transition-all duration-300" id="header">
+    <div
+        class="absolute inset-0 bg-transparent backdrop-blur-none transition-all duration-300"
+        id="header-bg"
+    >
     </div>
+    <nav class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center py-6">
+            {/* Logo */}
+            <div class="flex items-center">
+                <a href="/" class="flex items-center space-x-2">
+                    <img src="/logotype.png" alt=""  class="w-40 h-auto">
+                    <!-- <span class="text-2xl">💳</span>
+                    <span class="text-xl font-bold text-[#192a56]">Sublyt</span> -->
+                </a>
+            </div>
+
+            {/* Navigation */}
+            <!-- <div class="hidden md:flex items-center space-x-8">
+                <a
+                    href="#features"
+                    class="text-base font-medium text-gray-600 hover:text-[#192a56] transition-colors"
+                >
+                    Features
+                </a>
+                <a
+                    href="#pricing"
+                    class="text-base font-medium text-gray-600 hover:text-[#192a56] transition-colors"
+                >
+                    Pricing
+                </a>
+                <a
+                    href="#faq"
+                    class="text-base font-medium text-gray-600 hover:text-[#192a56] transition-colors"
+                >
+                    FAQ
+                </a>
+            </div> -->
+
+            {/* Mobile menu button */}
+            <!-- <div class="md:hidden">
+                <button
+                    type="button"
+                    class="inline-flex items-center justify-center p-2 rounded-md text-gray-600 hover:text-[#192a56] hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-[#FFD700]"
+                    aria-controls="mobile-menu"
+                    aria-expanded="false"
+                >
+                    <span class="sr-only">Open main menu</span>
+                    <svg
+                        class="block h-6 w-6"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                    <svg
+                        class="hidden h-6 w-6"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div> -->
+        </div>
+
+        {/* Mobile menu */}
+        <!-- <div class="hidden md:hidden" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a
+                    href="#features"
+                    class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-[#192a56] hover:bg-gray-50"
+                >
+                    Features
+                </a>
+                <a
+                    href="#pricing"
+                    class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-[#192a56] hover:bg-gray-50"
+                >
+                    Pricing
+                </a>
+                <a
+                    href="#faq"
+                    class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-[#192a56] hover:bg-gray-50"
+                >
+                    FAQ
+                </a>
+            </div>
+        </div> -->
+    </nav>
 </header>
+
+<script>
+    // Mobile menu toggle
+    const mobileMenuButton = document.querySelector(
+        'button[aria-controls="mobile-menu"]',
+    );
+    const mobileMenu = document.getElementById("mobile-menu");
+    const menuIcon = mobileMenuButton?.querySelector("svg:not(.hidden)");
+    const closeIcon = mobileMenuButton?.querySelector("svg.hidden");
+
+    mobileMenuButton?.addEventListener("click", () => {
+        const isExpanded =
+            mobileMenuButton.getAttribute("aria-expanded") === "true";
+
+        mobileMenu?.classList.toggle("hidden");
+        menuIcon?.classList.toggle("hidden");
+        closeIcon?.classList.toggle("hidden");
+
+        mobileMenuButton.setAttribute("aria-expanded", String(!isExpanded));
+    });
+
+    // Scroll effect for header
+    const header = document.getElementById("header");
+    const headerBg = document.getElementById("header-bg");
+
+    window.addEventListener("scroll", () => {
+        if (window.scrollY > 0) {
+            headerBg?.classList.remove("bg-transparent", "backdrop-blur-none");
+            headerBg?.classList.add("bg-white/80", "backdrop-blur-md");
+        } else {
+            headerBg?.classList.remove("bg-white/80", "backdrop-blur-md");
+            headerBg?.classList.add("bg-transparent", "backdrop-blur-none");
+        }
+    });
+</script>

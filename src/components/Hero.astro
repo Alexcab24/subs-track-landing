@@ -7,19 +7,26 @@
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-32">
         <div class="text-center">
             <h1
-                class="text-4xl sm:text-5xl md:text-6xl font-bold text-[#192a56] tracking-tight"
+                class="text-4xl sm:text-5xl md:text-6xl font-bold text-[#192a56] tracking-tight animate-fade-in"
             >
                 Manage Your Subscriptions
-                <span class="block text-[#FFD700]">With Ease</span>
+                <span
+                    class="block text-[#FFD700] animate-fade-up [animation-delay:200ms]"
+                    >With Ease</span
+                >
             </h1>
-            <p class="mt-6 text-xl text-gray-600 max-w-3xl mx-auto">
+            <p
+                class="mt-6 text-xl text-gray-600 max-w-3xl mx-auto animate-fade-up [animation-delay:400ms]"
+            >
                 Track all your subscriptions in one place. Never miss a payment
                 or renewal date again.
             </p>
         </div>
 
         {/* Waitlist Form */}
-        <div class="mt-12 max-w-md mx-auto">
+        <div
+            class="mt-12 max-w-md mx-auto animate-fade-up [animation-delay:600ms]"
+        >
             <form class="sm:flex sm:gap-x-4">
                 <div class="flex-1">
                     <label for="email-address" class="sr-only">
@@ -31,14 +38,14 @@
                         type="email"
                         autocomplete="email"
                         required
-                        class="w-full rounded-lg border border-gray-200 px-4 py-3 text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#FFD700] focus:border-transparent"
+                        class="w-full bg-white rounded-lg border border-gray-200 px-4 py-3 text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#FFD700] focus:border-transparent transition-all duration-300 hover:border-[#FFD700]"
                         placeholder="Enter your email"
                     />
                 </div>
                 <div class="mt-3 sm:mt-0">
                     <button
                         type="submit"
-                        class="w-full flex justify-center items-center px-6 py-3 border border-transparent text-base font-medium rounded-lg text-[#192a56] bg-[#FFD700] hover:bg-[#E6C84F] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#FFD700] transition-colors"
+                        class="w-full flex justify-center items-center px-6 py-3 border border-transparent text-base font-medium rounded-lg text-[#192a56] bg-[#FFD700] hover:bg-[#E6C84F] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#FFD700] transition-all duration-300 hover:scale-105 active:scale-95"
                     >
                         Join Waitlist
                     </button>
@@ -49,7 +56,7 @@
         {/* Feature highlights */}
         <div class="mt-16 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
             <div
-                class="relative p-6 bg-white rounded-lg border border-gray-100 shadow-sm hover:shadow-md transition-shadow"
+                class="relative p-6 bg-white rounded-lg border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 animate-fade-up [animation-delay:800ms]"
             >
                 <div class="text-[#FFD700] text-2xl mb-4">📊</div>
                 <h3 class="text-lg font-medium text-[#192a56]">
@@ -61,7 +68,7 @@
                 </p>
             </div>
             <div
-                class="relative p-6 bg-white rounded-lg border border-gray-100 shadow-sm hover:shadow-md transition-shadow"
+                class="relative p-6 bg-white rounded-lg border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 animate-fade-up [animation-delay:1000ms]"
             >
                 <div class="text-[#FFD700] text-2xl mb-4">🔔</div>
                 <h3 class="text-lg font-medium text-[#192a56]">
@@ -72,7 +79,7 @@
                 </p>
             </div>
             <div
-                class="relative p-6 bg-white rounded-lg border border-gray-100 shadow-sm hover:shadow-md transition-shadow"
+                class="relative p-6 bg-white rounded-lg border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 animate-fade-up [animation-delay:1200ms]"
             >
                 <div class="text-[#FFD700] text-2xl mb-4">💳</div>
                 <h3 class="text-lg font-medium text-[#192a56]">
