@@ -4,44 +4,28 @@ import Header from "../components/Header.astro";
 import Hero from "../components/Hero.astro";
 import About from "../components/About.astro";
 import FAQ from "../components/FAQ.astro";
-import Footer from "../components/Footer.astro";
 import Background from "../components/Background.astro";
 
-const features = [
-	{
-		title: "Intuitive Dashboard",
-		description:
-			"Get a clear overview of all your subscriptions in one place. Track spending, monitor upcoming payments, and analyze your subscription patterns with our user-friendly dashboard.",
-		image: "/proto1.png",
-		imageAlt:
-			"SubsTrack Dashboard showing subscription overview and analytics",
-		deviceType: "laptop" as const,
-	},
-	{
-		title: "Detailed Payment History",
-		description:
-			"Access your complete payment history with detailed transaction records. Filter by date, status, or service to find exactly what you're looking for.",
-		image: "/proto2.png",
-		imageAlt:
-			"SubsTrack Payment History showing detailed transaction records",
-		deviceType: "mobile" as const,
-		reverse: true,
-	},
-];
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const title = "Sublyt - Effortlessly Track and Manage Your Subscriptions";
+const description =
+	"Sublyt helps you track your subscriptions, set payment reminders, and manage recurring expenses with ease. Stay in control and avoid unexpected charges.";
+const canonicalURL = "https://sublyt.com";
+const ogImage = "https://sublyt.app/og-image.png";
 ---
 
-<Layout title="Sublyt - Smart Subscription Management">
-	<div class="relative min-h-screen">
+<Layout
+	title={title}
+	description={description}
+	canonicalURL={canonicalURL}
+	ogImage={ogImage}
+>
+	<div class="relative min-h-screen ">
 		<Background />
 		<Header />
-		<main class="relative">
+		<main class="relative ">
 			<Hero />
 			<About />
 			<FAQ />
 		</main>
-		<!-- <Footer /> -->
 	</div>
 </Layout>

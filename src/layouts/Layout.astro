@@ -2,25 +2,52 @@
 import "../styles/global.css";
 interface Props {
 	title: string;
-	description?: string;
+	description: string;
+	canonicalURL: string;
+	ogImage: string;
 }
 
-const {
-	title,
-	description = "Manage all your subscriptions in one place. Save time and money with our intuitive platform.",
-} = Astro.props;
+const { title, description, canonicalURL, ogImage } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="es" class="scroll-smooth">
+<html lang="en">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/png" sizes="128x128" href="/favicon.png" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.png" />
 
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 		<meta name="description" content={description} />
+		<link rel="canonical" href={canonicalURL} />
+
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={canonicalURL} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={ogImage} />
+
+		<!-- Twitter -->
+		<meta property="twitter:card" content="summary_large_image" />
+		<meta property="twitter:url" content={canonicalURL} />
+		<meta property="twitter:title" content={title} />
+		<meta property="twitter:description" content={description} />
+		<meta property="twitter:image" content={ogImage} />
+
+		<!-- Keywords -->
+		<meta
+			name="keywords"
+			content="subscription tracking, payment reminders, manage recurring expenses, track subscriptions easily, avoid unexpected charges, subscription management, expense tracking, payment tracking, subscription organizer, subscription tracker"
+		/>
+
+		<!-- Additional SEO tags -->
+		<meta name="robots" content="index, follow" />
+		<meta name="language" content="English" />
+		<meta name="author" content="Sublyt" />
+		<meta name="theme-color" content="#FFD700" />
+
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
@@ -28,17 +55,38 @@ const {
 			rel="stylesheet"
 		/>
 	</head>
-	<body class="bg-white font-inter text-gray-900 antialiased">
+	<body class=" text-gray-900 antialiased animate-fade-in">
 		<slot />
 	</body>
 </html>
 
 <style is:global>
 	:root {
-		--accent: #3b82f6;
-		--accent-dark: #1d4ed8;
+		--accent: 136, 58, 234;
+		--accent-light: 224, 204, 250;
+		--accent-dark: 49, 10, 101;
+		--accent-gradient: linear-gradient(
+			45deg,
+			rgb(var(--accent)),
+			rgb(var(--accent-light)) 30%,
+			white 60%
+		);
 	}
 	html {
-		font-family: "Inter", system-ui, sans-serif;
+		font-family: system-ui, sans-serif;
+		background: #f6f6f6;
+		background-size: 224px;
+	}
+
+	code {
+		font-family:
+			Menlo,
+			Monaco,
+			Lucida Console,
+			Liberation Mono,
+			DejaVu Sans Mono,
+			Bitstream Vera Sans Mono,
+			Courier New,
+			monospace;
 	}
 </style>
