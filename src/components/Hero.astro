@@ -1,58 +1,166 @@
----
-import { supabase } from "../lib/supabase";
 
-if (Astro.request.method === "POST") {
-  try {
-    const data = await Astro.request.formData();
-    const email = data.get("email")?.toString().trim();
-
-    console.log("Email recibido:", email);
-    
-    const { error } = await supabase.from("waitlist").insert([{ email }]);
-
-  } catch (error) {
-    console.error("Error en el servidor:", error);
-
-  }
-}
----
-
-<section class="relative overflow-hidden">
+<section class="relative overflow-hidden" id="waitlist">
   <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-32">
     <div class="text-center">
-      <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-[#192a56] tracking-tight animate-fade-in">
+      <h1
+        class="text-4xl sm:text-5xl md:text-6xl font-bold text-[#192a56] tracking-tight animate-fade-in"
+      >
         Manage Your Subscriptions
-        <span class="block text-[#FFD700] animate-fade-up [animation-delay:200ms]">With Ease</span>
+        <span
+          class="block text-[#FFD700] animate-fade-up [animation-delay:200ms]"
+          >With Ease</span
+        >
       </h1>
       <p class="mt-6 text-xl text-gray-600 max-w-3xl mx-auto animate-fade-up">
-        Track all your subscriptions in one place. Never miss a payment or renewal date again.
+        Track all your subscriptions in one place. Never miss a payment or
+        renewal date again.
       </p>
     </div>
 
     <div class="mt-12 max-w-md mx-auto animate-fade-up">
-      <form method="POST" class="sm:flex sm:gap-x-4" id="waitlist-form">
+      <form id="waitlist-form" class="mt-8 flex flex-col sm:flex-row gap-4">
         <div class="flex-1">
-          <label for="email" class="sr-only">Email address</label>
+          <label for="email" class="sr-only">Email</label>
           <input
             type="email"
             name="email"
             id="email"
-            autocomplete="email"
             required
-            class="w-full bg-white rounded-lg border border-gray-200 px-4 py-3 text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#FFD700] focus:border-transparent transition-all duration-300 hover:border-[#FFD700]"
+            class="block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#192a56] focus:border-[#192a56]"
             placeholder="Enter your email"
           />
         </div>
-        <div class="mt-3 sm:mt-0">
-          <button
-            type="submit"
-            class="w-full flex justify-center items-center px-6 py-3 border border-transparent text-base font-medium rounded-lg text-[#192a56] bg-[#FFD700] hover:bg-[#E6C84F] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#FFD700] transition-all duration-300 hover:scale-105 active:scale-95"
+        <button
+          type="submit"
+          id="submit-button"
+          class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-lg text-[#192a56] bg-[#FFD700] hover:bg-[#E6C84F] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#FFD700] transition-all duration-300 hover:scale-105 active:scale-95"
+        >
+          <span>Join Waitlist</span>
+          <svg
+            id="loading-spinner"
+            class="hidden animate-spin ml-2 h-4 w-4 text-[#192a56]"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
           >
-            Join Waitlist
-          </button>
-        </div>
+            <circle
+              class="opacity-25"
+              cx="12"
+              cy="12"
+              r="10"
+              stroke="currentColor"
+              stroke-width="4"></circle>
+            <path
+              class="opacity-75"
+              fill="currentColor"
+              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+            ></path>
+          </svg>
+        </button>
       </form>
     </div>
   </div>
 </section>
 
+<script>
+  import { supabase } from "../lib/supabase";
+
+  const form = document.getElementById("waitlist-form");
+  const submitButton = document.getElementById(
+    "submit-button",
+  ) as HTMLButtonElement;
+  const spinner = document.getElementById("loading-spinner");
+  const buttonText = submitButton?.querySelector("span");
+
+  const showLoading = () => {
+    if (submitButton && spinner && buttonText) {
+      spinner.classList.remove("hidden");
+      buttonText.textContent = "Joining...";
+      submitButton.disabled = true;
+    }
+  };
+
+  const hideLoading = () => {
+    if (submitButton && spinner && buttonText) {
+      spinner.classList.add("hidden");
+      buttonText.textContent = "Join Waitlist";
+      submitButton.disabled = false;
+    }
+  };
+
+  const createPopup = (message: string, ok: boolean) => {
+    const existingPopup = document.getElementById("message-popup");
+    if (existingPopup) {
+      existingPopup.remove();
+    }
+
+    const popup = document.createElement("div");
+    popup.innerHTML = `
+      <div id="message-popup" class="fixed bottom-0 end-0 z-60 sm:max-w-sm w-full mx-auto p-6 z-50">
+        <div class="p-4 border border-gray-200 rounded-xl shadow-2xs ${ok ? "bg-green-500" : "bg-red-500"}">
+          <div class="flex gap-x-4">
+            <div class="grow">
+              <p class="text-sm text-white">${message}</p>
+            </div>
+            <div>
+              <button type="button" class="p-2 inline-flex items-center gap-x-2 text-sm font-semibold rounded-full border border-transparent text-gray-200 hover:bg-opacity-80 focus:outline-hidden focus:bg-opacity-80 disabled:opacity-50 disabled:pointer-events-none" onclick="this.closest('#message-popup').remove()">
+                <span class="sr-only">Dismiss</span>
+                <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(popup);
+  };
+
+  form?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    showLoading();
+
+    try {
+      const formData = new FormData(e.target as HTMLFormElement);
+      const email = formData.get("email")?.toString().trim();
+
+      if (!email) {
+        throw new Error("Please enter a valid email address");
+      }
+
+      // Verificar si el email ya existe
+      const { data: existingEmail, error: searchError } = await supabase
+        .from("waitlist")
+        .select("email")
+        .eq("email", email)
+        .single();
+
+      if (searchError && searchError.code !== "PGRST116") {
+        throw new Error("Error checking email status");
+      }
+
+      if (existingEmail) {
+        createPopup("This email is already on the waitlist!", false);
+        return;
+      }
+
+      // Si el email no existe, lo insertamos
+      const { error: insertError } = await supabase
+        .from("waitlist")
+        .insert([{ email }]);
+
+      if (insertError) {
+        throw new Error("Error joining the waitlist");
+      }
+
+      // Éxito - redirigir a la página de agradecimiento
+      window.location.href = "/thank-you";
+    } catch (error) {
+      createPopup(
+        error instanceof Error ? error.message : "An unexpected error occurred",
+        false,
+      );
+    } finally {
+      hideLoading();
+    }
+  });
+</script>

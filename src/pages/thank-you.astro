@@ -1,0 +1,75 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Background from "../components/Background.astro";
+
+const title = "Thank You - Sublyt";
+const description =
+    "Thank you for joining Sublyt's waitlist. We'll keep you updated on our launch.";
+const canonicalURL = "https://sublyt.app/thank-you";
+const ogImage = "https://sublyt.app/og-image.png";
+---
+
+<Layout
+    title={title}
+    description={description}
+    canonicalURL={canonicalURL}
+    ogImage={ogImage}
+>
+    <div class="relative min-h-screen flex items-center justify-center">
+        <Background />
+        <div
+            class="relative text-center px-4 py-16 sm:px-6 lg:px-8 max-w-3xl mx-auto"
+        >
+            <div
+                class="bg-white/80 backdrop-blur-sm p-8 rounded-2xl shadow-lg border border-gray-100"
+            >
+                <div class="text-[#FFD700] text-6xl mb-6 animate-float">🎉</div>
+                <h1
+                    class="text-4xl font-bold text-[#192a56] mb-4 animate-fade-in"
+                >
+                    Welcome to Sublyt!
+                </h1>
+                <p
+                    class="text-xl text-gray-600 mb-8 animate-fade-up [animation-delay:200ms]"
+                >
+                    Thank you for joining our waitlist. We're excited to have
+                    you on board!
+                </p>
+                <div
+                    class="space-y-4 text-gray-600 mb-8 animate-fade-up [animation-delay:400ms]"
+                >
+                    <p>
+                        We'll keep you updated on our progress and let you know
+                        as soon as Sublyt is ready.
+                    </p>
+                    <!-- <p class="text-sm">
+                        In the meantime, feel free to follow us on social media
+                        for the latest updates.
+                    </p> -->
+                </div>
+                <div
+                    class="flex justify-center space-x-4 animate-fade-up [animation-delay:600ms]"
+                >
+                    <a
+                        href="/"
+                        class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-lg text-[#192a56] bg-[#FFD700] hover:bg-[#E6C84F] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#FFD700] transition-all duration-300 hover:scale-105"
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="h-5 w-5 mr-2"
+                            viewBox="0 0 20 20"
+                            fill="currentColor"
+                        >
+                            <path
+                                fill-rule="evenodd"
+                                d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                        Back to Home
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</Layout>
+
