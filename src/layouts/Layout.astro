@@ -54,8 +54,23 @@ const { title, description, canonicalURL, ogImage } = Astro.props;
 			href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
 			rel="stylesheet"
 		/>
-	</head>
-	<body class=" text-gray-900 antialiased animate-fade-in">
+		<script
+			async
+			src="https://www.googletagmanager.com/gtag/js?id=G-JPJVWZG9RG"
+		></script></head
+	>
+	<!-- Google tag (gtag.js) -->
+
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() {
+			dataLayer.push(arguments);
+		}
+		gtag("js", new Date());
+
+		gtag("config", "G-JPJVWZG9RG");
+	</script>
+	<body class="text-gray-900 antialiased animate-fade-in">
 		<slot />
 	</body>
 </html>
